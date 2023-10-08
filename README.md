@@ -68,8 +68,8 @@ The rest of this assignment is very open-ended.  Your goal is to select a couple
 
 The specific requirements are as follows:
 
-- The experience uses at least one additional movement method. Godot XR Tools has 10 other movement providers to choose from!  
-- The experience uses the [Pickup Function](https://godotvr.github.io/godot-xr-tools/docs/pickup/) to allow the user to interact with objects in the environment.
+- The experience uses at least one additional **movement** method. Godot XR Tools has 10 other movement providers to choose from!  
+- The experience uses the [Pickup Function](https://godotvr.github.io/godot-xr-tools/docs/pickup/) to allow the user to **interact** with objects in the environment.
 - The interactions are well-integrated into the objectives or gameplay of the VR experience.
 
 Note that the names of the actions relevant to the Quest controllers are specified in `openxr_action_map.tres` and include `thumbstick`, `trigger`, `grip`, `ax_button`, and `by_button`.
