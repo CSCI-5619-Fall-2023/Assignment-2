@@ -1,6 +1,6 @@
 # Assignment 2: Creating Interactive VR Experiences
 
-**Due: Thursday, September 28, 11:59pm CDT**
+**Due: Friday, October 27, 11:59pm CDT**
 
 In this assignment, you will create an interactive VR application using a library that implements common forms of locomotion and object interaction. You will also gain experience with development using WebXR, which provides a standardized pipeline for deploying immersive experiences in a web browser.
 
@@ -56,7 +56,11 @@ Next, you should add virtual hands to the project, as demonstrated in class.  Th
 
 ## Part 2: Adding Direct Movement
 
-The first interaction you should add to your project is [direct movement](https://godotvr.github.io/godot-xr-tools/docs/direct/) using the controller thumbstick.  When added as a child of the controller object, MovementDirect should work directly out of the box, and the plugin will automatically also create a PlayerBody for you.  However, you will likely need to change the `Input Action` specified on the object inspector from `primary` to `thumbstick`.
+The first interaction you should add to your project is [direct movement](https://godotvr.github.io/godot-xr-tools/docs/direct/) using the controller thumbstick.  When added as a child of the controller object, MovementDirect should work directly out of the box, and the plugin will automatically also create a PlayerBody for you.  However, you will likely need to change the `Input Action` specified on the object inspector from `primary` to `thumbstick`.  
+
+Direct movement only provides forward and backward translation.  After that is working, you should add the [turn movement](https://godotvr.github.io/godot-xr-tools/docs/turn/), which works much the same way, except it uses the left and right directions of the thumbstick. This movement provided uses snap turn by default, which rotates in discrete intervals. However, you can switch it to smooth turn if you prefer that option.
+
+To make the application user friendly for both right-handed and left-handed people, it is good practice to place the movement providers on both controllers by default. However, if you later find that the techniques you want to implement in the next part require use of a controller thumbstick,  you can optionally remove them from one controller.
 
 ## Part 3: Create an Interactive VR Experience
 
@@ -64,30 +68,38 @@ The rest of this assignment is very open-ended.  Your goal is to select a couple
 
 The specific requirements are as follows:
 
-- The experience uses at least one additional **movement** method.  Turn does not count because it is trivial and not really separate from Direct Movement, but there are about 10 other movement providers to choose from!
-- The experience uses at least one **interaction** method (Pickup Function or Pointer).
+- The experience uses at least one additional movement method. Godot XR Tools has 10 other movement providers to choose from!  
+- The experience uses the [Pickup Function](https://godotvr.github.io/godot-xr-tools/docs/pickup/) to allow the user to interact with objects in the environment.
 - The interactions are well-integrated into the objectives or gameplay of the VR experience.
 
-For the last part, this means that you should think about *how* you can design the VR experience to take advantage of the specific techniques you selected. For example, a simple experience where the user just needs to walk around normally that just copy-and-pastes a different movement technique in its place would not be an example of thoughtful integration.  Here are a couple examples:
+Note that the names of the actions relevant to the Quest controllers are specified in `openxr_action_map.tres` and include `thumbstick`, `trigger`, `grip`, `ax_button`, and `by_button`.
+
+For the final bullet point, you should think about *how* you can design the VR experience to take advantage of the specific techniques you selected. For example, a simple experience where the user just needs to walk around normally that just copy-and-pastes a different movement technique in its place would not be an example of thoughtful integration.  Here are a couple examples:
 
 - A game that requires hitting targets at different heights and makes use of vertical locomotion methods (e.g., Climbing, Wall Walk) to achieve this goal.
-- A game that requires traversing an environment with pits or obstacles that prevent normal walking could consider alternative locomotion methods (e.g., Glide, Grapple) to achieve this goal.
+- A game that requires traversing an environment with pits or obstacles that prevent normal walking could consider alternative locomotion methods (e.g., Glide, Grapple).
 
-The key point is that the objectives for the user and the interaction techniques selected to achieve them should make sense together logically. 
+The key point is that the objectives for the user and the interaction techniques selected to achieve them should make sense together. 
 
-Note that the expectations for this assignment are for a functional prototype of the interactions, not a complete game. You are not being graded based on criteria such as game narrative or artistic quality. This assignment will require creating a more complex virtual scene, and you can do so using only 3D mesh primitives. Of course, you are also welcome to use the Synty assets posted on Canvas or other third-party assets you find online. 
+Note that the expectations for this assignment are a functional prototype of the interactions, not a complete game. You are not being graded based on criteria such as artistic quality or narrative. Although this assignment will require creating a more complex virtual scene, you can do this using the built-in 3D mesh primitives in Godot. Of course, you are also welcome to import additional assets, such as the Synty packs posted on Canvas or other 3D models you find online. 
 
-If you do choose to add third-party assets, make sure that you only use low poly meshes since this needs to run directly on the Quest. Although the visual quality of the assets is not part of the grading criteria, very complex 3D models could slow down your application and negatively impact the usability of the interaction techniques. Additionally, large file sizes will cause WebXR applications to load very slowly because they need to downloaded by the web browser at runtime.
+If you do choose to add third-party assets, make sure that you only use low poly meshes since the application needs to run directly on the Quest, because complex 3D models could slow down your application and negatively impact the usability of the interaction techniques. Additionally, large file sizes will cause WebXR applications to load very slowly because they need to downloaded by the web browser at runtime.
 
 ## Rubric
 
-Graded out of 20 points.
+Graded out of 20 points. Partial credit is possible for each step.
 
-1. TBD
+1. Added virtual hands. (2)
+1. Added the direct movement provider. (2)
+1. Added the turn movement provider. (2)
+1. Created a more complex virtual scene that involves moving around and interacting with objects. (4)
+1. Added an additional movement provider. (4)
+1. Added the pickup function. (4)
+1. The interaction techniques are integrated logically with the tasks that users should perform. (2)
 
-**Bonus Challenge:** For two points of extra credit, you can look ahead a bit at the documentation on [XR controller input](https://docs.godotengine.org/en/stable/tutorials/xr/xr_action_map.html) and add some interaction with the 3D objects using the hand-tracked controllers. This is an open-ended challenge, and creativity is encouraged! Make sure to describe any additional functionality at the top of this readme file so that we can properly test it during grading. (+2)
+**Bonus Challenge:** For two points of extra credit, you can try to extend the interactions with additional functionality that is not already provided by Godot XR Tools. This could involve extending the existing scripts or writing new ones from scratch. This is open-ended, and the only requirement is that the additional functionality involves some sort of custom 3D interaction using head tracking, hand tracking, or controller-based input. You should describe any additional functionality at the top of this readme file so that we can properly test it during grading. (+2)
 
-**Documentation:** Make sure to document any third party assets or code used in this assignment at the top of this readme file. One point will be deducted for using third party assets without attribution. This only refers to additional assets that you find on your own; you don't need to document anything that is already described in the assignment instructions. (-1)
+**Documentation:** Make sure to document any third party assets or code used in this assignment at the top of this readme file. One point will be deducted for using third party assets without attribution. This only refers to additional assets that you find on your own; you don't need to document anything that is already provided along with the assignment. (-1)
 
 ## License
 
