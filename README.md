@@ -1,6 +1,6 @@
 # Assignment 2: Creating Interactive VR Experiences
 
-**Due: Friday, October 27, 11:59pm CDT**
+**Due: Friday, October 20, 11:59pm CDT**
 
 In this assignment, you will create an interactive VR application using a library that implements common forms of locomotion and object interaction. You will also gain experience with development using WebXR, which provides a standardized pipeline for deploying immersive experiences in a web browser.
 
